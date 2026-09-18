@@ -4,14 +4,20 @@ import java.util.Scanner;
 public class Main{
 
     public static void main(String[] args) {
-        var baseYear = OffsetDateTime.now().getYear();
         var scanner = new Scanner(System.in);
-        System.out.println("Informe o seu nome:");
+        System.out.println("Informe seu nome:");
         var name = scanner.next();
-        System.out.println("Informe o seu ano de nascimento:");
-        var year = scanner.nextInt();
-        var age = baseYear - year;
-        System.out.printf("Olá %s você tem %s anos \n", name, age);
+        System.out.println("Informe sua idade:");
+        var age = scanner.nextInt();
+        System.out.println("Você é emancipado? (s/n)");
+        var isEmancipated = scanner.next().equalsIgnoreCase("s");
+        var canDrive = (age>= 18) || (age >= 16 && isEmancipated);
+        var message = canDrive ?
+                name + ", você pode dirigir \n" :
+                name + ", você pode dirigir \n";
+
+        System.out.printf(message);
+
     }
 
 }
